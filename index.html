@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>reversi - Game Start</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #FF3366, #33FF66, #3366FF, #FF33CC);
+            background-size: 500% 500%;
+            animation: gradient 60s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        /* vsCPUボタンの初期状態を黒ずんだ青色に設定 */
+        .vs-cpu-button {
+            background-color: #0080ff;
+            color: white;
+        }
+
+        .vs-player-button {
+            background-color: rgb(253, 1, 1);
+            color: white;
+        }
+
+        /* 選択されたボタンのスタイル */
+        .selected {
+            background-color: #444;
+        }
+
+        /* ChooseMode のスタイル*/
+        #ChooseMode {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        /* Your collar is "white?" or "black"? のスタイル */
+        #collarChoice {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* "white" ボタンのスタイル */
+        .white-button {
+            background-color: white;
+            color: black;
+        }
+
+        /* "black" ボタンのスタイル */
+        .black-button {
+            background-color: black;
+            color: white;
+        }
+        /* "Start Game" ボタンのスタイル*/
+        #startGameBtn {
+            background-color: #048f04;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>reversi - Game Start</h1>
+
+    <div id="ChooseMode">
+        Choose Mode:  <span id="modeDisplay">vs CPU</span><br>
+        <button id="vsCpuBtn" class="vs-cpu-button selected" onclick="selectMode(true)">vs CPU</button>
+        <button id="vsPlayerBtn" class="vs-player-button" onclick="selectMode(false)">vs Player</button>
+    </div>
+
+    <div id="playerOptions">
+        <span id="collarChoice" style="display: none;">Your collar is "white?" or "black"? <span id="collarDisplay">black</span></span>
+        <button id="whiteBtn" class="white-button" onclick="selectCollar('white')" style="display: none;">White</button>
+        <button id="blackBtn" class="black-button selected" onclick="selectCollar('black')" disabled style="display: none;">Black</button>
+    </div>
+    
+        <div>
+        <button id="startGameBtn" onclick="startGame()">Start Game</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+

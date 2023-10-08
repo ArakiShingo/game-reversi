@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>reversi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        /* タイトルのスタイル */
+        h1 {
+            color: #333;
+        }
+
+        /* オセロの盤のスタイル */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 2px;
+            background-color: #006400;
+            margin: 20px auto;
+            width: 416px;
+            border: 2px solid #000;
+            position: relative;
+        }
+
+        /* オセロのセルのスタイル */
+        .cell {
+            background-color: #228B22;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        /* オセロの駒のスタイル */
+        .piece {
+            width: 90%;
+            height: 90%;
+            background-color: transparent;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* オセロの白駒のスタイル */
+        .piece.white {
+            background-color: white;
+        }
+
+        /* オセロの黒駒のスタイル */
+        .piece.black {
+            background-color: black;
+        }
+
+        /* オセロの盤の十字のスタイル */
+        .cross {
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ターン表示のスタイル */
+        #turn {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* スコア表示のスタイル */
+        #score {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* 勝者表示のスタイル */
+        #winner {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* ボタンのスタイル */
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #logs {
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        /* メニューバーのスタイル */
+        #menu-bar {
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        /* メニューバー内のボタンのスタイル */
+        #menu-bar button {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>reversi</h1>
+    <!-- メニューバー -->
+    <div id="menu-bar">
+        <button id="resetBtn">Reset</button>
+        <div>|</div>
+        <button id="hintBtn">Hint</button>
+        <div>|</div>
+        <button id="remakeGameBtn">Remake Game</button>
+    </div>
+    <!-- オセロの盤 -->
+    <div class="board"></div>
+    <!-- ログ表示エリアを追加 -->
+    <div id="logs" style="text-align: left; max-height: 200px; overflow-y: auto;"></div>
+    <!-- ターン表示を追加 -->
+    <div id="turn"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
