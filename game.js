@@ -270,6 +270,27 @@ function showWinner(winner) {
     }
 }
 
+// メニューバー
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const menuBar = document.getElementById("menu-bar");
+
+    menuToggle.addEventListener("click", function () {
+        menuBar.classList.toggle("show-menu");
+        // メニューバーが表示されている間、三本線のボタンを非表示にする
+        menuToggle.style.display = menuBar.classList.contains("show-menu") ? "none" : "block";
+    });
+
+    // メニューバー以外の場所をクリックしたときにメニューを非表示にする
+    document.addEventListener("click", function (event) {
+        if (!menuBar.contains(event.target) && event.target !== menuToggle) {
+            menuBar.classList.remove("show-menu");
+            // メニューバーが非表示になるとき、三本線のボタンを再度表示する
+            menuToggle.style.display = "block";
+        }
+    });
+});
+
 // Remake Game ボタンの処理
 document.getElementById('remakeGameBtn').addEventListener('click', remakeGame);
 
