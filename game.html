@@ -117,15 +117,6 @@
             z-index: 2;
         }
 
-        /* メニューバー表示時のスタイル */
-        #menu-bar.show-menu {
-            display: flex;
-        }
-
-        /* メニューバー非表示時のスタイル */
-        #menu-bar:not(.show-menu) {
-            display: none;
-        }
         /* メニューバーのスタイル */
         #menu-bar {
             background-color: #333;
@@ -136,7 +127,8 @@
             width: 100%;
             z-index: 1;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* 中央づめに変更 */
+            align-items: center;
             padding: 10px;
         }
 
@@ -150,20 +142,49 @@
             cursor: pointer;
         }
 
+        /* メニュー項目間の区切り線スタイル */
+        #menu-bar div {
+            color: white;
+            padding: 0 10px; /* 区切り線の間隔を調整 */
+        }
+
+        /* メニューバー表示時のスタイル */
+        #menu-bar.show-menu {
+            display: flex;
+        }
+
+        /* メニューバー非表示時のスタイル */
+        #menu-bar:not(.show-menu) {
+            display: none;
+        }
+
+        /* メニューバーの三本線アイコンのスタイル */
+        #menu-toggle {
+            font-size: 24px;
+            background-color: #333;
+            border: none;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
     </style>
 </head>
 <body>
     <h1>reversi</h1>
     <!-- メニューバー -->
-    <div id="menu-button">
-        <button id="menu-toggle">☰</button>
-    </div>
     <div id="menu-bar">
         <button id="resetBtn">Reset</button>
         <div>|</div>
         <button id="hintBtn">Hint</button>
         <div>|</div>
         <button id="remakeGameBtn">Remake Game</button>
+    </div>
+    <!-- メニューアイコン -->
+    <div id="menu-button">
+        <button id="menu-toggle">☰</button>
     </div>
     <!-- オセロの盤 -->
     <div class="board"></div>
