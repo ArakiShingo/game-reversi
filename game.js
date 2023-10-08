@@ -207,7 +207,7 @@ function updateScore() {
 // ターン表示を更新する関数
 function updateTurn() {
     var turnElement = document.getElementById('turn');
-    turnElement.innerHTML = 'Current Turn: ' + (currentPlayer === 'B' ? 'Black' : 'White');
+    turnElement.textContent = 'Current Turn: ' + (currentPlayer === 'B' ? 'Black' : 'White');
 }
 
 // ゲーム終了かどうかを判定する関数
