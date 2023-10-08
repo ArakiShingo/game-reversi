@@ -69,6 +69,7 @@ function handleCellClick(event) {
     }
 }
 
+
 // 駒をひっくり返す関数
 function flipStones(row, col) {
     // 各方向のベクトル
@@ -355,7 +356,7 @@ function resetGame() {
 
 // ゲームをリメイクする関数
 function remakeGame() {
-    window.location.href = 'game.html';
+    window.location.href = 'index.html'; // index.html のパスを適切に指定
 }
 
 // 初期盤面を描画
