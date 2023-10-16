@@ -117,7 +117,7 @@
     <div id="winner"></div>
 
     <script>
-        // 以前の JavaScript コードをそのまま保持
+        // オセロの盤面の初期状態を設定
         var boardState = [
             ['', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', ''],
@@ -129,9 +129,10 @@
             ['', '', '', '', '', '', '', '']
         ];
 
-        var currentPlayer = 'B';
+        var currentPlayer = 'B'; // 最初の手番はCPU (黒) です
         var previousBoardState = null;
 
+        // ゲーム盤を描画
         function drawBoard() {
             var board = document.querySelector('.board');
             board.innerHTML = '';
@@ -155,7 +156,9 @@
                 }
             }
         }
+        makeCPUMove();
 
+        // プレイヤーの手番を処理
         function handleCellClick(event) {
             var row = parseInt(event.target.dataset.row);
             var col = parseInt(event.target.dataset.col);
@@ -183,6 +186,7 @@
             }
         }
 
+        // CPUの手番を処理
         function makeCPUMove() {
             var validMoves = getValidMoves();
 
@@ -193,13 +197,13 @@
             // ランダムに有効な手を選択
             var randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
 
-            // 選択された手を実行（白 ('W') の手を置く）
+            // 選択された手を実行（黒 ('B') の手を置く）
             var row = randomMove.row;
             var col = randomMove.col;
             previousBoardState = JSON.parse(JSON.stringify(boardState));
-            boardState[row][col] = 'W'; // 白の手を置く
+            boardState[row][col] = 'B'; // 黒の手を置く
             flipStones(row, col);
-            currentPlayer = 'B'; // プレイヤーの手番に切り替え
+            currentPlayer = 'W'; // プレイヤーの手番に切り替え
 
             drawBoard();
             updateScore();
@@ -210,6 +214,8 @@
                 showWinner(winner);
             }
         }
+
+        // 直前の手を取り消す
         function undoMove() {
             if (previousBoardState !== null) {
                 boardState = JSON.parse(JSON.stringify(previousBoardState));
@@ -223,6 +229,7 @@
             }
         }
 
+        // ヒントを表示（有効な手のセルを黄色でハイライト表示）
         function showHint() {
             var hints = getValidMoves();
             highlightCells(hints);
@@ -253,7 +260,7 @@
                         if (isOnBoard(x, y) && boardState[x][y] === currentPlayer) {
                             return true;
                         }
-                    }
+}
                 }
             }
 
@@ -330,6 +337,7 @@
             }
         }
 
+        // スコアを更新
         function updateScore() {
             var blackScore = 0;
             var whiteScore = 0;
@@ -348,15 +356,18 @@
             scoreElement.innerHTML = 'Black: ' + blackScore + ', White: ' + whiteScore;
         }
 
+        // ターンを更新
         function updateTurn() {
             var turnElement = document.getElementById('turn');
             turnElement.innerHTML = 'Current Turn: ' + (currentPlayer === 'B' ? 'Black' : 'White');
         }
 
+        // ゲームが終了したかどうかを確認
         function isGameOver() {
             return getValidMoves().length === 0;
         }
 
+        // 勝者を取得
         function getWinner() {
             var blackScore = 0;
             var whiteScore = 0;
@@ -380,6 +391,7 @@
             }
         }
 
+        // 勝者を表示
         function showWinner(winner) {
             var winnerElement = document.getElementById('winner');
             if (winner === 'Tie') {
@@ -389,6 +401,7 @@
             }
         }
 
+        // ゲーム開始時に盤面を描画し、最初の手番を実行
         drawBoard();
         updateScore();
         updateTurn();

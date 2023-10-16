@@ -1,6 +1,22 @@
+
+// 初期設定時に黒ボタンをグレーにする
+document.getElementById('blackBtn').style.backgroundColor = '#444';
+document.getElementById('blackBtn').style.color = 'white';
+
+// 初期設定で黒が選択される
+let collarChoice = 'black';
+let vsCpu = true;
+selectCollar('black');
+
+document.getElementById('whiteBtn').disabled = false;
+document.getElementById('blackBtn').disabled = false;
+document.getElementById('whiteBtn').style.display = 'inline-block';
+document.getElementById('blackBtn').style.display = 'inline-block';
+document.getElementById('collarChoice').style.display = 'block';
+
 function selectMode(vsCpu) {
     vsCpuSelected = vsCpu;
-
+  
     // "vs CPU" モードが選択された場合、白黒ボタンを有効化および表示
     // "vs PLAYER" モードが選択された場合、白黒ボタンを無効化および非表示
     if (vsCpu) {
@@ -9,12 +25,14 @@ function selectMode(vsCpu) {
         document.getElementById('whiteBtn').style.display = 'inline-block';
         document.getElementById('blackBtn').style.display = 'inline-block';
         document.getElementById('collarChoice').style.display = 'block';
+        vsCpu = true;
     } else {
         document.getElementById('whiteBtn').disabled = true;
         document.getElementById('blackBtn').disabled = true;
         document.getElementById('whiteBtn').style.display = 'none';
         document.getElementById('blackBtn').style.display = 'none';
         document.getElementById('collarChoice').style.display = 'none';
+        vsCpu = false;
     }
 
     document.getElementById('vsCpuBtn').classList.toggle('selected', vsCpu);
@@ -52,19 +70,15 @@ function selectCollar(collar) {
     }
 }
 
-// 初期設定時に黒ボタンをグレーにする
-document.getElementById('blackBtn').style.backgroundColor = '#444';
-document.getElementById('blackBtn').style.color = 'white';
-
-// 初期設定で黒が選択される
-let collarChoice = 'black';
-selectCollar('black');
-
-
 
 function startGame() {
-
-    // ゲームを開始してゲーム画面に遷移する処理を追加
-    window.location.href = 'game.html';
-
+    if (vsCpu) {
+        if (collarChoice === 'black') {
+            window.location.href = 'gamevsBCPU.html'; // vsCPU かつ黒の場合
+        } else if (collarChoice === 'white') {
+            window.location.href = 'gamevsWCPU.html'; // vsCPU かつ白の場合
+        }
+    } else {
+        window.location.href = 'gamevsPlayer.html'; // vsPlayerの場合
+    }
 }
