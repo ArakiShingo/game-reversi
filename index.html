@@ -7,29 +7,26 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(45deg, #FF3366, #33FF66, #3366FF, #FF33CC);
-            background-size: 500% 500%;
-            animation: gradient 60s linear infinite;
+            background-color: white; /* シンプルな白い背景 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 画面の下部に配置 */
+            align-items: center; /* 画面の中央に配置 */
+            min-height: 100vh; /* ビューポートの高さに合わせる */
         }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            25% {
-                background-position: 100% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            75% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        #pic1 {
+            width: 200px; /* 画像の幅 */
+            height: 200px; /* 画像の高さ */
         }
-
+        #picContainer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin: 10px; /* 余白を設定 */
+        }
         h1 {
             color: #333;
         }
@@ -98,24 +95,30 @@
     </style>
 </head>
 <body>
-    <h1>reversi - Game Start</h1>
+    <div>
+        <h1>reversi - Game Start</h1>
 
-    <div id="ChooseMode">
-        Choose Mode:  <span id="modeDisplay">vs CPU</span><br>
-        <button id="vsCpuBtn" class="vs-cpu-button selected" onclick="selectMode(true)">vs CPU</button>
-        <button id="vsPlayerBtn" class="vs-player-button" onclick="selectMode(false)">vs Player</button>
+        <div id="ChooseMode">
+            Choose Mode:  <span id="modeDisplay">vs CPU</span><br>
+            <button id="vsCpuBtn" class="vs-cpu-button selected" onclick="selectMode(true)">vs CPU</button>
+            <button id="vsPlayerBtn" class="vs-player-button" onclick="selectMode(false)">vs Player</button>
+        </div>
+
+        <div id="playerOptions">
+            <span id="collarChoice" style="display: none;">Your collar is "white?" or "black"? <span id="collarDisplay">black</span></span>
+            <button id="whiteBtn" class="white-button" onclick="selectCollar('white')" style="display: none;">White</button>
+            <button id="blackBtn" class="black-button selected" onclick="selectCollar('black')" disabled style="display: none;">Black</button>
+        </div>
+        
+        <div>
+            <button id="startGameBtn" onclick="startGame()">Start Game</button>
+        </div>
     </div>
 
-    <div id="playerOptions">
-        <span id="collarChoice" style="display: none;">Your collar is "white?" or "black"? <span id="collarDisplay">black</span></span>
-        <button id="whiteBtn" class="white-button" onclick="selectCollar('white')" style="display: none;">White</button>
-        <button id="blackBtn" class="black-button selected" onclick="selectCollar('black')" disabled style="display: none;">Black</button>
+    <div id="picContainer">
+        <img id="pic1" src="image/pic1.png" alt="pic1">
     </div>
     
-        <div>
-        <button id="startGameBtn" onclick="startGame()">Start Game</button>
-    </div>
-
     <script src="index.js"></script>
 </body>
 </html>
